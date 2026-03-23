@@ -1,0 +1,51 @@
+.containerForRecipes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 2fr));
+    gap: 10px;
+    max-width: 95%;
+    margin: 0 auto;
+
+    .cardForRecipe {
+        max-width: 400px;
+        height: 400px;
+        margin: 0 auto;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+
+        img {
+            max-width: 95%;
+        }
+    }
+}
+
+.filterForDifficulty {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 0 auto;
+    max-width: 95%;
+    margin-bottom: 10px;
+
+    button {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f5f5f5;
+    }
+
+    button:hover {
+        background-color: #ccc;
+    }
+
+    button:active {
+        background-color: #ccc;
+    }
+
+    button:focus {
+        background-color: #ccc;
+    }
+}
