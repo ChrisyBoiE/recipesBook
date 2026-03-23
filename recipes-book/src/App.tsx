@@ -6,6 +6,7 @@ function App() {
   const [data, setData] = useState<Recipe[] | null>(null);
   const [loading, setLoading] = useState<Boolean>(true);
   const [error, setError] = useState<Error | null>(null);
+  const [filter, setFilter] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('https://dummyjson.com/recipes')
@@ -28,16 +29,20 @@ function App() {
   if (loading) return <p>Betöltés...</p>
   if (error) return <p>Hiba történt a letöltés során!</p>
 
+  const filteredRecipes = filter
+    ? data?.filter(recipe => recipe.difficulty === filter)
+    : data;
+
   return (
     <div>
       <div className='filterForDifficulty'>
-        <button>Összes</button>
-        <button>Könnyű</button>
-        <button>Közepes</button>
-        <button>Nehéz</button>
+        <button onClick={() => setFilter(null)}>Reset</button>
+        <button onClick={() => setFilter('Easy')}>Easy</button>
+        <button onClick={() => setFilter('Medium')}>Medium</button>
+        <button onClick={() => setFilter('Hard')}>Hard</button>
       </div>
       <div className='containerForRecipes'>
-        {data?.map(recipe => (
+        {filteredRecipes?.map(recipe => (
           <div key={recipe.id}>
             <div className="cardForRecipe">
               <h2>{recipe.name}</h2>
