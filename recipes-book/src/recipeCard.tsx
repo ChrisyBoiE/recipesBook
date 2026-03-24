@@ -1,12 +1,15 @@
 import { useEffect, useState } from 'react';
-import './App.css'
-import { Recipe } from './recipeType/type';
+import './recipeCard.css'
+import { Recipe } from './interfaces/recipe';
+import RecipeDetailComponent from './recipeDetailComponent/recipeDetail';
 
-function App() {
+function RecipeCardComponent() {
   const [data, setData] = useState<Recipe[] | null>(null);
   const [loading, setLoading] = useState<Boolean>(true);
   const [error, setError] = useState<Error | null>(null);
   const [filter, setFilter] = useState<string | null>(null);
+  const [selectedRecipe, setSelectedRecipe] = useState<Recipe | null>(null);
+  const [basket, setBasket] = useState<string[]>([]);
 
   useEffect(() => {
     fetch('https://dummyjson.com/recipes')
@@ -29,6 +32,14 @@ function App() {
   if (loading) return <p>Betöltés...</p>
   if (error) return <p>Hiba történt a letöltés során!</p>
 
+  const toggleIngredient = (ingredient: string) => {
+    setBasket(prev =>
+      prev.includes(ingredient)
+        ? prev.filter(item => item !== ingredient)
+        : [...prev, ingredient]
+    );
+  };
+
   const filteredRecipes = filter
     ? data?.filter(recipe => recipe.difficulty === filter)
     : data;
@@ -43,7 +54,7 @@ function App() {
       </div>
       <div className='containerForRecipes'>
         {filteredRecipes?.map(recipe => (
-          <div key={recipe.id}>
+          <div key={recipe.id} onClick={() => setSelectedRecipe(recipe)}>
             <div className="cardForRecipe">
               <h2>{recipe.name}</h2>
               <img src={recipe.image} alt={recipe.name} />
@@ -53,8 +64,22 @@ function App() {
           </div>
         ))}
       </div>
+      {selectedRecipe && (
+        <RecipeDetailComponent
+          recipe={selectedRecipe}
+          onClose={() => setSelectedRecipe(null)}
+          basket={basket}
+          onToggleIngredient={toggleIngredient}
+        />
+      )}
+
+      {basket.length > 0 && (
+        <div className="shopping-bag-fab">
+          Kiválasztott tételek: {basket.length} db
+        </div>
+      )}
     </div>
   )
 }
 
-export default App
+export default RecipeCardComponent
