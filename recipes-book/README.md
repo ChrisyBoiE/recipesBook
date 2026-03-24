@@ -1,6 +1,6 @@
 # Recipe Book - Junior felvételi feladat
 
-Ez a projekt egy interaktív receptkönyv alkalmazás, amely a [dummyjson.com](https://dummyjson.com) külső API-ját használja az adatok megjelenítéséhez és kezeléséhez. A feladat célja a tiszta kód éss a logikus felépítés bemutatása.
+Ez a projekt egy interaktív receptkönyv alkalmazás, amely a [dummyjson.com](https://dummyjson.com) külső API-ját használja az adatok megjelenítéséhez és kezeléséhez. A feladat célja a tiszta kód és a logikus felépítés bemutatása.
 
 ## Technológiai választás
 
