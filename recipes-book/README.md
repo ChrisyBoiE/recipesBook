@@ -1,16 +1,32 @@
-# React + Vite
+# Recipe Book - Junior felvételi feladat
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Ez a projekt egy interaktív receptkönyv alkalmazás, amely a [dummyjson.com](https://dummyjson.com) külső API-ját használja az adatok megjelenítéséhez és kezeléséhez. A feladat célja a tiszta kód éss a logikus felépítés bemutatása.
 
-Currently, two official plugins are available:
+## Technológiai választás
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+A projekt **React** keretrendszerrel és **TypeScript** használatával készült. A TypeScript alkalmazása biztosítja a típusbiztonságot (különösen a `Recipe` interface esetében), ami segít megelőzni a futási idejű hibákat és javítja a kód olvashatóságát.
 
-## React Compiler
+## Telepítés és Futtatás
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+A projekt elindításához kövesd az alábbi lépéseket:
 
-## Expanding the ESLint configuration
+1.  **Telepítés**:
+    ```bash
+    npm install
+    ```
+2.  **Fejlesztői környezet futtatása**:
+    ```bash
+    npm run dev
+    ```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Technikai döntések
+
+A fejlesztés során több stratégiai döntést hoztam a jobb kódminőség és felhasználói élmény érdekében:
+
+-   **Származtatott állapot (Derived State):** A receptek szűrése során nem írom felül az eredeti adathalmazt. Ehelyett egy úgynevezett származtatott változót (`filteredRecipes`) használok az aktuálisan megjelenítendő adatok kiszámítására. Ez lehetővé teszi a gyors és reaktív szűrést az eredeti adatok megőrzése mellett.
+-   **Állapot-kiemelés (State Lifting):** A bevásárlókosár tartalmát és a kiválasztott receptet a közös szülő komponensben (`RecipeCardComponent`) tárolom. Ez biztosítja, hogy a kiválasztott alapanyagok megmaradjanak akkor is, ha a felhasználó másik receptet nyit meg, vagy vált a nézetek között.
+-   **Feltételes megjelenítés (Conditional Rendering):** A részletes nézethez URL-alapú navigáció (Router) helyett feltételes megjelenítést alkalmaztam. Ez egyszerűbbé, gyorsabbá és reaktívabbá teszi az alkalmazást.
+
+## Kihívások és tanulságok
+
+Ez a feladat remek lehetőség volt a React mélyebb megismerésére. Korábbi Angular tudásom sokat segített a logikai felépítésben, ugyanakkor a React deklaratív, "Just JavaScript" szintaxisa és az állapotkezelés módja érdekes kihívást jelentett.
