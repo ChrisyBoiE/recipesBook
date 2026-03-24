@@ -29,4 +29,4 @@ A fejlesztés során több stratégiai döntést hoztam a jobb kódminőség és
 
 ## Kihívások és tanulságok
 
-Ez a feladat remek lehetőség volt a React mélyebb megismerésére. Korábbi Angular tudásom sokat segített a logikai felépítésben, ugyanakkor a React deklaratív, "Just JavaScript" szintaxisa és az állapotkezelés módja érdekes kihívást jelentett.í
+Ez a feladat remek lehetőség volt a React mélyebb megismerésére. Korábbi Angular tudásom sokat segített a logikai felépítésben, ugyanakkor a React deklaratív, "Just JavaScript" szintaxisa és az állapotkezelés módja érdekes kihívást jelentett.
